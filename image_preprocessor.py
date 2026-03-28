@@ -16,11 +16,14 @@ class ImagePreprocessor:
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         blur = cv2.medianBlur(gray, 3)
 
+        BLOCK_SIZE = 51
+        CONSTANT = 15
         binary = cv2.adaptiveThreshold(
             blur, 255,
             cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
             cv2.THRESH_BINARY,
-            11, 2
+            BLOCK_SIZE,
+            CONSTANT
         )
 
         inverted_binary = cv2.bitwise_not(binary)
