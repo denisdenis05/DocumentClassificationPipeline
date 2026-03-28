@@ -13,7 +13,7 @@ class DocumentDateExtractor:
         )
 
         if not extracted_date_objects:
-            return None
+            return "Unknown"
 
         primary_date_object = extracted_date_objects[0]
         standardized_date_string = primary_date_object.strftime(self.target_date_format)
