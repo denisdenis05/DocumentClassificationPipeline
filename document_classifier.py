@@ -16,9 +16,10 @@ class DocumentClassifier:
             "Contract"
         ]
         self.keyword_heuristics = {
-            "Invoice": ["invoice", "due date", "bill to", "vat number", "iban", "subtotal", "remittance"],
-            "Receipt": ["receipt", "gratuity", "tip", "change due", "cashier", "auth code", "transaction id"],
-            "Scientific Paper": ["abstract", "methodology", "references", "et al.", "doi", "hypothesis"],
+            "Receipt": ["receipt", "invoice", "due date", "bill to", "vat number", "iban", "remittance", "gratuity", "tip",
+                        "change due", "cashier", "auth code", "transaction", "transaction id","charges", "statement", "balance",
+                        "total", "subtotal", "cash", "contactless", "credit card", "debit card", "quantity", "qty"],
+            "Scientific Paper": ["abstract", "introduction", "conclusion", "methodology", "references", "et al.", "doi", "hypothesis", "related work"],
             "Resume": ["experience", "education", "skills", "objective", "certifications", "employment history"],
             "Contract": ["agreement", "whereas", "hereby", "governing law", "severability", "in witness whereof"]
         }
