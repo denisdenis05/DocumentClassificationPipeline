@@ -1,4 +1,4 @@
-import RAG
+from helpers import RAG
 
 ai_prompter = RAG.LocalRAG()
 
@@ -10,7 +10,7 @@ def chat():
         if question.lower() == "exit":
             return
 
-        response = ai_prompter.ask_question(question)[0]
-        print(response['content'])
+        response = ai_prompter.ask_question(question)
+        print(response)
 
 chat()

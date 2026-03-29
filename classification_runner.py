@@ -1,29 +1,15 @@
 import os
 import uuid
 import chromadb
-
-import document_date_extractor
-import document_classifier
-import document_text_extractor
+from helpers import document_date_extractor, document_text_extractor, document_classifier, RAG
 
 document_classifier = document_classifier.DocumentClassifier()
 text_extractor = document_text_extractor.DocumentTextExtractor()
 date_extractor = document_date_extractor.DocumentDateExtractor()
+rag = RAG.LocalRAG()
 
 chroma_client = chromadb.PersistentClient(path="vector_db")
 collection = chroma_client.get_or_create_collection(name="document_collection")
-
-def chunk_text(text: str, chunk_size: int = 5000, overlap: int = 50) -> list:
-    if not text:
-        return []
-    chunks = []
-    start = 0
-    text_length = len(text)
-    while start < text_length:
-        end = start + chunk_size
-        chunks.append(text[start:end])
-        start += chunk_size - overlap
-    return chunks
 
 def document_classification(full_path: str) -> tuple:
     text = text_extractor.extract_text(full_path)
@@ -45,7 +31,7 @@ for root, directories, files in os.walk('dataset'):
             with open(target_path_string, 'wb+') as dest_file:
                 dest_file.write(source_file.read())
 
-        text_chunks = chunk_text(text)
+        text_chunks = rag.chunk_text(text)
 
         chunk_ids = []
         chunk_metadatas = []

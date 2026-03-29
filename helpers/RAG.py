@@ -1,7 +1,8 @@
 import requests
 import chromadb
 import json
-import document_date_extractor
+from helpers import document_date_extractor
+
 
 class LocalRAG:
     def __init__(self, db_path: str = "vector_db", collection_name: str = "document_collection",
@@ -20,7 +21,6 @@ class LocalRAG:
 
         class_mapping = {
             "receipt": "Receipt",
-            "invoice": "Invoice",
             "contract": "Contract",
             "resume": "Resume",
             "scientific paper": "Scientific Paper"
@@ -65,6 +65,18 @@ class LocalRAG:
         retrieved_chunks = results['documents'][0]
 
         return "\n...\n".join(retrieved_chunks)
+
+    def chunk_text(text: str, chunk_size: int = 5000, overlap: int = 50) -> list:
+        if not text:
+            return []
+        chunks = []
+        start = 0
+        text_length = len(text)
+        while start < text_length:
+            end = start + chunk_size
+            chunks.append(text[start:end])
+            start += chunk_size - overlap
+        return chunks
 
     def ask_question(self, question: str) -> str:
         context = self._retrieve_context(question)
