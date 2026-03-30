@@ -2,7 +2,7 @@ import os
 import fitz
 import magic
 
-import document_ocr
+from helpers import document_ocr
 
 
 class DocumentTextExtractor:

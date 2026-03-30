@@ -66,7 +66,7 @@ class LocalRAG:
 
         return "\n...\n".join(retrieved_chunks)
 
-    def chunk_text(text: str, chunk_size: int = 5000, overlap: int = 50) -> list:
+    def chunk_text(self, text: str, chunk_size: int = 5000, overlap: int = 50) -> list:
         if not text:
             return []
         chunks = []

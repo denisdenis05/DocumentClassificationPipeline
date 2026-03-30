@@ -1,7 +1,8 @@
 import pytesseract
 from pdf2image import convert_from_path
 import os
-import image_preprocessor
+from helpers import image_preprocessor
+
 
 class DocumentOCRExtractor:
     def __init__(self):

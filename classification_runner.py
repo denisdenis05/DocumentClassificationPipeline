@@ -1,4 +1,5 @@
 import os
+import shutil
 import uuid
 import chromadb
 from helpers import document_date_extractor, document_text_extractor, document_classifier, RAG
@@ -27,9 +28,9 @@ for root, directories, files in os.walk('dataset'):
         os.makedirs(target_directory, exist_ok=True)
         target_path_string = os.path.join(target_directory, file_name)
 
-        with open(full_path_string, 'rb') as source_file:
-            with open(target_path_string, 'wb+') as dest_file:
-                dest_file.write(source_file.read())
+        shutil.copy2(full_path_string, target_path_string)
+
+        print(f'File {file_name} classified as {classification}, moved to {target_path_string}')
 
         text_chunks = rag.chunk_text(text)
 
