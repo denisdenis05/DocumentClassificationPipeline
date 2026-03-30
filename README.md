@@ -92,13 +92,24 @@ response:
 ```commandline
 curl -X POST http://localhost:8000/api/chat \
   -H "Content-Type: application/json" \
-  -d '{"question": "Summarize the uploaded documents"}'
+  -d '{"question": "What experience does Eliette Fritsch have in her resume?"}'
 ```
 
 response:
 ```json
 {
-  "question": "What invoices do I have from January?",
-  "response": "You have 3 invoices dated January 2024..."
+  "question": "What experience does Eliette Fritsch have in her resume?",
+  "response": "She has 3 internships, including: ..."
 }
+```
+
+### Some random tested document questions:
+```text
+What experience does Eliette Fritsch have in her resume
+```
+```text
+Did I pay a lot for my Applebee's receipt in 01 December 2018? 
+```
+```text
+I have a car rental company, who to hire? Eliette Fritsch or Khadija Arradi? Check their resumes.
 ```
